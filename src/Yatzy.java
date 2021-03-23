@@ -2,8 +2,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Yatzy {
+    //Testaamista varten...
     public static void main(String[] args) throws Exception {
-        Scanner lukija = new Scanner(System.in);
+        Scanner lukija = new Scanner(System.in); 
 
         Pelaajat peli = new Pelaajat("yatzy");
         peli.lisaaPelaaja("Niko");
