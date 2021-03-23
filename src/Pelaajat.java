@@ -25,7 +25,9 @@ public class Pelaajat {
     public void tulostaPelaaja(String nimi) {
         for (Pelaajat pelaaja : pelaajat) {
             if (nimi.equalsIgnoreCase(pelaaja.nimi)) {
-                System.out.println(pelaaja.getNimi() + "n" + " kortti:");
+                System.out.println("--------------------------------------------");
+                System.out.println("Pelaajan " + pelaaja.getNimi() + " kortti:");
+                System.out.println("--------------------------------------------");
                 pelaaja.kortti.tulostaKortti();
 
             }
