@@ -2,32 +2,19 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Yatzy {
-    //Testaamista varten...
+    // Testaamista varten...
     public static void main(String[] args) throws Exception {
-        Scanner lukija = new Scanner(System.in); 
-
-        Pelaajat peli = new Pelaajat("yatzy");
+        Scanner lukija = new Scanner(System.in);
+        Pelaajat peli = new Pelaajat("Yatzy");
         peli.lisaaPelaaja("Niko");
+        peli.lisaaPelaaja("Seppo");
         peli.lisaaPelaaja("Matti");
-        while (true) {
-            System.out.println("Mitä tehdään?");
-            String komento = lukija.nextLine();
-            if (komento.equalsIgnoreCase("hae")) {
-                System.out.println("kuka haetaan");
-                String haettava = lukija.nextLine();
-                peli.tulostaPelaaja(haettava);
-            } else if (komento.equalsIgnoreCase("lisaa")) {
-                System.out.println("kenelle lisataan");
-                String kenelle = lukija.nextLine();
-                System.out.println("Indeksiin?");
-                int indeksi = Integer.valueOf(lukija.nextLine());
-                System.out.println("Tulos?");
-                int tulos = Integer.valueOf(lukija.nextLine());
-                peli.lisaaTulos(kenelle, indeksi, tulos);
-            } else if (komento.equalsIgnoreCase("lopeta")) {
-                break;
-            }
-        }
+        peli.tulostaPisteet();
+        peli.lisaaTulos("Matti", 4, 3);
+        peli.tulostaPelaaja("Matti");
+        System.out.println("Pelin voitti: " + peli.tulostaVoittaja());
+        peli.lisaaTulos("Seppo", 4, 4);
+        System.out.println("Pelin voitti: " + peli.tulostaVoittaja());
 
     }
 }

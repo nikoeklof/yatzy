@@ -18,13 +18,14 @@ public class Pelaajat {
 
     }
 
-    public ArrayList<Pelaajat> getPelaajat() {
-        return pelaajat;
+    public Pelaajat getPelaaja(int indeksi) {
+        return this.pelaajat.get(indeksi);
     }
 
     public void tulostaPelaaja(String nimi) {
         for (Pelaajat pelaaja : pelaajat) {
             if (nimi.equalsIgnoreCase(pelaaja.nimi)) {
+                pelaaja.kortti.laskePisteet();
                 System.out.println("--------------------------------------------");
                 System.out.println("Pelaajan " + pelaaja.getNimi() + " kortti:");
                 System.out.println("--------------------------------------------");
@@ -44,7 +45,7 @@ public class Pelaajat {
         for (Pelaajat pelaaja : pelaajat) {
             if (pelaaja.getNimi().equalsIgnoreCase(pelaajaNimi)) {
                 pelaaja.kortti.maara[indeksi] = tulos;
-                break;
+                pelaaja.kortti.laskePisteet();
             }
         }
 
@@ -54,6 +55,34 @@ public class Pelaajat {
         Pelaajat pelaaja = new Pelaajat(nimi);
         this.pelaajat.add(pelaaja);
         System.out.println("Pelaaja lisätty");
+    }
+
+    public void tulostaPisteet() {
+        System.out.println("_____________");
+        System.out.println("");
+        System.out.println("Pistetilanne");
+        System.out.println("_____________");
+        System.out.println("");
+        for (Pelaajat pelaaja : pelaajat) {
+            pelaaja.kortti.laskePisteet();
+            System.out.println(pelaaja.nimi + ": " + pelaaja.kortti.pisteet[1] + " pistettä.");
+        }
+        System.out.println("_____________");
+    }
+
+    public String tulostaVoittaja() {
+        int indeksi = 0;
+        Pelaajat voittaja = getPelaaja(indeksi);
+        for (int i = 0; i < pelaajat.size(); i++) {
+            getPelaaja(indeksi).kortti.laskePisteet();
+            getPelaaja(i).kortti.laskePisteet();
+            if (getPelaaja(i).kortti.pisteet[1] > voittaja.kortti.pisteet[1]) {
+                voittaja = getPelaaja(i);
+            }
+
+        }
+        return voittaja.getNimi();
+
     }
 
 }
