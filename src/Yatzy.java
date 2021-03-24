@@ -10,10 +10,10 @@ public class Yatzy {
         peli.lisaaPelaaja("Seppo");
         peli.lisaaPelaaja("Matti");
         peli.tulostaPisteet();
-        peli.lisaaTulos("Matti", 4, 3);
+        peli.lisaaTulos(2, 4, 3);
         peli.tulostaPelaaja("Matti");
         System.out.println("Pelin voitti: " + peli.tulostaVoittaja());
-        peli.lisaaTulos("Seppo", 4, 4);
+        peli.lisaaTulos(1, 4, 4);
         System.out.println("Pelin voitti: " + peli.tulostaVoittaja());
 
     }

@@ -1,12 +1,10 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Pelaajat {
 
-    private ArrayList<Pelaajat> pelaajat = new ArrayList<>();
+    private ArrayList<Pelaajat> pelaajat = new ArrayList<Pelaajat>();
     private String nimi;
     Poytakirja kortti;
-    Scanner lukija = new Scanner(System.in);
 
     public Pelaajat(String nimi) {
         this.nimi = nimi;
@@ -41,13 +39,9 @@ public class Pelaajat {
         }
     }
 
-    public void lisaaTulos(String pelaajaNimi, int indeksi, int tulos) { // muokkaan tämän toimimaan vuorojen mukaan
-        for (Pelaajat pelaaja : pelaajat) {
-            if (pelaaja.getNimi().equalsIgnoreCase(pelaajaNimi)) {
-                pelaaja.kortti.maara[indeksi] = tulos;
-                pelaaja.kortti.laskePisteet();
-            }
-        }
+    public void lisaaTulos(int pelaaja, int indeksi, int tulos) { // muokkaan tämän toimimaan vuorojen mukaan
+
+        getPelaaja(pelaaja).kortti.maara[indeksi] = tulos;
 
     }
 
