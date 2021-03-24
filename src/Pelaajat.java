@@ -20,6 +20,23 @@ public class Pelaajat {
         return this.pelaajat.get(indeksi);
     }
 
+    public void poistaPelaaja(String nimi) {
+        if (pelaajat.isEmpty()) {
+            System.out.println("");
+            System.out.println("Ei pelaajia!");
+            System.out.println("");
+        } else {
+            for (int i = 0; i < pelaajat.size(); i++)
+                if (pelaajat.get(i).getNimi().equals(nimi)) {
+                    pelaajat.remove(i);
+                }
+            System.out.println("");
+            System.out.println("Pelaaja poistettu!");
+            System.out.println("");
+        }
+
+    }
+
     public void tulostaPelaaja(String nimi) {
         for (Pelaajat pelaaja : pelaajat) {
             if (nimi.equalsIgnoreCase(pelaaja.nimi)) {
@@ -34,12 +51,19 @@ public class Pelaajat {
     }
 
     public void tulostaPelaajat() {
-        for (Pelaajat pelaaja : pelaajat) {
-            System.out.println(pelaaja.getNimi());
+        if (pelaajat.isEmpty()) {
+            System.out.println("");
+            System.out.println("Ei pelaajia!");
+            System.out.println("");
+        } else {
+            System.out.println("------Pelaajat------");
+            for (Pelaajat pelaaja : pelaajat) {
+                System.out.println(pelaaja.getNimi());
+            }
         }
     }
 
-    public void lisaaTulos(int pelaaja, int indeksi, int tulos) { // muokkaan tämän toimimaan vuorojen mukaan
+    public void lisaaTulos(int pelaaja, int indeksi, int tulos) {
 
         getPelaaja(pelaaja).kortti.maara[indeksi] = tulos;
 
@@ -49,6 +73,7 @@ public class Pelaajat {
         Pelaajat pelaaja = new Pelaajat(nimi);
         this.pelaajat.add(pelaaja);
         System.out.println("Pelaaja lisätty");
+        System.out.println("");
     }
 
     public void tulostaPisteet() {
@@ -62,6 +87,7 @@ public class Pelaajat {
             System.out.println(pelaaja.nimi + ": " + pelaaja.kortti.pisteet[1] + " pistettä.");
         }
         System.out.println("_____________");
+        System.out.println("");
     }
 
     public String tulostaVoittaja() {
@@ -75,7 +101,7 @@ public class Pelaajat {
             }
 
         }
-        return voittaja.getNimi();
+        return "Pelin voittaja: " + voittaja.getNimi() + "\nYhteispistein: " + voittaja.kortti.pisteet[1];
 
     }
 
