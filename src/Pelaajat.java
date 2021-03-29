@@ -2,22 +2,10 @@ import java.util.ArrayList;
 
 public class Pelaajat {
 
-    private ArrayList<Pelaajat> pelaajat = new ArrayList<Pelaajat>();
-    private String nimi;
-    Poytakirja kortti;
+    public ArrayList<Pelaaja> pelaajat;
 
-    public Pelaajat(String nimi) {
-        this.nimi = nimi;
-        this.kortti = new Poytakirja();
-    }
-
-    public String getNimi() {
-        return this.nimi;
-
-    }
-
-    public Pelaajat getPelaaja(int indeksi) {
-        return this.pelaajat.get(indeksi);
+    public Pelaajat() {
+        this.pelaajat = new ArrayList<Pelaaja>();
     }
 
     public void poistaPelaaja(String nimi) {
@@ -38,13 +26,13 @@ public class Pelaajat {
     }
 
     public void tulostaPelaaja(String nimi) {
-        for (Pelaajat pelaaja : pelaajat) {
-            if (nimi.equalsIgnoreCase(pelaaja.nimi)) {
-                pelaaja.kortti.laskePisteet();
+        for (Pelaaja pelaaja : pelaajat) {
+            if (nimi.equalsIgnoreCase(pelaaja.getNimi())) {
+                pelaaja.getPoytakirja().laskePisteet();
                 System.out.println("--------------------------------------------");
                 System.out.println("Pelaajan " + pelaaja.getNimi() + " kortti:");
                 System.out.println("--------------------------------------------");
-                pelaaja.kortti.tulostaKortti();
+                pelaaja.getPoytakirja().tulostaKortti();
 
             }
         }
@@ -57,7 +45,7 @@ public class Pelaajat {
             System.out.println("");
         } else {
             System.out.println("------Pelaajat------");
-            for (Pelaajat pelaaja : pelaajat) {
+            for (Pelaaja pelaaja : pelaajat) {
                 System.out.println(pelaaja.getNimi());
             }
         }
@@ -65,13 +53,14 @@ public class Pelaajat {
 
     public void lisaaTulos(int pelaaja, int indeksi, int tulos) {
 
-        getPelaaja(pelaaja).kortti.maara[indeksi] = tulos;
+        pelaajat.get(pelaaja).getPoytakirja().lisaaPisteita(indeksi, tulos);
 
     }
 
     public void lisaaPelaaja(String nimi) {
-        Pelaajat pelaaja = new Pelaajat(nimi);
+        Pelaaja pelaaja = new Pelaaja(nimi);
         this.pelaajat.add(pelaaja);
+        System.out.println("");
         System.out.println("Pelaaja lisätty");
         System.out.println("");
     }
@@ -82,9 +71,9 @@ public class Pelaajat {
         System.out.println("Pistetilanne");
         System.out.println("_____________");
         System.out.println("");
-        for (Pelaajat pelaaja : pelaajat) {
-            pelaaja.kortti.laskePisteet();
-            System.out.println(pelaaja.nimi + ": " + pelaaja.kortti.pisteet[1] + " pistettä.");
+        for (Pelaaja pelaaja : pelaajat) {
+            pelaaja.getPoytakirja().laskePisteet();
+            System.out.println(pelaaja.getNimi() + ": " + pelaaja.getPoytakirja().pisteet[1] + " pistettä.");
         }
         System.out.println("_____________");
         System.out.println("");
@@ -92,16 +81,16 @@ public class Pelaajat {
 
     public String tulostaVoittaja() {
         int indeksi = 0;
-        Pelaajat voittaja = getPelaaja(indeksi);
+        Pelaaja voittaja = pelaajat.get(indeksi);
         for (int i = 0; i < pelaajat.size(); i++) {
-            getPelaaja(indeksi).kortti.laskePisteet();
-            getPelaaja(i).kortti.laskePisteet();
-            if (getPelaaja(i).kortti.pisteet[1] > voittaja.kortti.pisteet[1]) {
-                voittaja = getPelaaja(i);
+            pelaajat.get(indeksi).getPoytakirja().laskePisteet();
+            pelaajat.get(i).getPoytakirja().laskePisteet();
+            if (pelaajat.get(i).getPoytakirja().pisteet[1] > voittaja.getPoytakirja().pisteet[1]) {
+                voittaja = pelaajat.get(i);
             }
 
         }
-        return "Pelin voittaja: " + voittaja.getNimi() + "\nYhteispistein: " + voittaja.kortti.pisteet[1];
+        return "Pelin voittaja: " + voittaja.getNimi() + "\nYhteispistein: " + voittaja.getPoytakirja().pisteet[1];
 
     }
 

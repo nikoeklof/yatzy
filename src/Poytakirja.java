@@ -29,6 +29,18 @@ public class Poytakirja {
         System.out.println("------------");
     }
 
+    public void lisaaPisteita(int indeksi, int pisteMaara) {
+        maara[indeksi] += pisteMaara;
+    }
+
+    public int[] getMaara() {
+        return maara;
+    }
+
+    public String getYhdistelma(int indeksi) {
+        return yhdistelmat[indeksi];
+    }
+
     public int[] laskePisteet() {
         // täällä lasketaan pöytäkirjan pisteet ja katsotaan saako pelaaja bonuspisteitä
         // yms.

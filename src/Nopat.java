@@ -1,9 +1,23 @@
 import java.util.Random;
 import java.util.Scanner;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class Nopat {
+
+    int[] x;
+
+    public Nopat() {
+
+    }
+
+    public int[] palautaTulos() {
+
+        int[] y = new int[2];
+        y = this.x;
+        return y;
+    }
 
     public void heitaNoppa() {
 
@@ -11,7 +25,7 @@ public class Nopat {
         Scanner lukija = new Scanner(System.in);
 
         boolean pisteetValittu = false;
-        int x = 0;
+        this.x = new int[2];
         int vuorot = 2;
 
         System.out.println("Heitetään 5 noppaa...");
@@ -63,6 +77,7 @@ public class Nopat {
                 if (heittoja != 5) {
 
                     System.out.println("Mitkä nopat heitetään uusiksi?");
+                    System.out.println("Huom! valitse nopat yksitellen");
 
                     while (true) {
                         uusi01 = Integer.valueOf(lukija.nextLine());
@@ -246,7 +261,7 @@ public class Nopat {
 
                     x = noppienTulos(noppa01, noppa02, noppa03, noppa04, noppa05, lukija);
 
-                    if (x == 0 && vuorot == 0) {
+                    if (x[1] == 0 && vuorot == 0) {
                         System.out.print("Oletko varma? Sinulla ei ole enään vuoroja... yay vai nay");
                         while (true) {
                             String viimeinen = lukija.nextLine();
@@ -258,12 +273,12 @@ public class Nopat {
                                 System.out.print("Virhe");
                             }
                         }
-                    } else if (x == 0) {
+                    } else if (x[1] == 0) {
                         break;
-                    } else if (x > 0) {
+                    } else if (x[1] > 0) {
                         pisteetValittu = true;
-                    } else if (x == -1) {
-                        x = 0;
+                    } else if (x[1] == -1) {
+                        x[1] = 0;
                         pisteetValittu = true;
 
                     } else if (vuorot > 0) {
@@ -283,12 +298,12 @@ public class Nopat {
                 break;
             }
         }
-        lukija.close();
-        System.out.println(x);
+
+        palautaTulos();
 
     }
 
-    public static int noppienTulos(int noppa01, int noppa02, int noppa03, int noppa04, int noppa05, Scanner lukija) {
+    public static int[] noppienTulos(int noppa01, int noppa02, int noppa03, int noppa04, int noppa05, Scanner lukija) {
 
         // Spagetti koodia
 
@@ -339,14 +354,20 @@ public class Nopat {
         boolean taysKasi = false;
         boolean sattuma = false;
         boolean yatzy = false;
-        int pisteet = 0;
+        int[] pisteet = new int[2];
 
         System.out.println("Pöytäkirjan yhdistelmät: ");
 
         // Perus-yhdistelmät
 
-        // Ykköset
-
+        // Ykköset , perus yhdistelmät pitäisi toimia myös tälläsellä loopilla
+        // if (noppia.contains(1)) {
+        // ykkoset = true;
+        // for (Integer noppa : noppia) {
+        // if (noppa == 1) {
+        // i++;
+        // }
+        // }
         if (noppia.contains(1)) {
             ykkoset = true;
 
@@ -370,7 +391,9 @@ public class Nopat {
 
         // Kakkoset
 
-        if (noppia.contains(2)) {
+        if (noppia.contains(2))
+
+        {
             kakkoset = true;
 
             if (noppa01 == 2) {
@@ -615,60 +638,77 @@ public class Nopat {
         while (true) {
             String yhdistelma = lukija.nextLine();
             if (yhdistelma.equals("ykkoset") && ykkoset) {
-                pisteet = i;
+                pisteet[0] = 0;
+                pisteet[1] = i;
                 break;
             } else if (yhdistelma.equals("kakkoset") && kakkoset) {
-                pisteet = ii;
+                pisteet[0] = 1;
+                pisteet[1] = ii;
                 break;
             } else if (yhdistelma.equals("kolmoset") && kolmoset) {
-                pisteet = iii;
+                pisteet[0] = 2;
+                pisteet[1] = iii;
                 break;
             } else if (yhdistelma.equals("neloset") && neloset) {
-                pisteet = iv;
+                pisteet[0] = 3;
+                pisteet[1] = iv;
                 break;
             } else if (yhdistelma.equals("viitoset") && viitoset) {
-                pisteet = v;
+                pisteet[0] = 4;
+                pisteet[1] = v;
                 break;
             } else if (yhdistelma.equals("kuutoset") && kuutoset) {
-                pisteet = vi;
+                pisteet[0] = 5;
+                pisteet[1] = vi;
                 break;
             } else if (yhdistelma.equals("yksipari") && yksiPari) {
-                pisteet = ipari;
+                pisteet[0] = 6;
+                pisteet[1] = ipari;
                 break;
             } else if (yhdistelma.equals("kaksiparia") && kaksiParia) {
-                pisteet = iipari;
+                pisteet[0] = 7;
+                pisteet[1] = iipari;
                 break;
             } else if (yhdistelma.equals("kolmoisluku") && kolmoisluku) {
-                pisteet = trio;
+                pisteet[0] = 8;
+                pisteet[1] = trio;
                 break;
             } else if (yhdistelma.equals("neloisluku") && neloisluku) {
-                pisteet = quad;
+                pisteet[0] = 9;
+                pisteet[1] = quad;
                 break;
             } else if (yhdistelma.equals("pienisuora") && pieniSuora) {
-                pisteet = pieniSuora15;
+                pisteet[0] = 10;
+                pisteet[1] = pieniSuora15;
                 break;
             } else if (yhdistelma.equals("suurisuora") && suuriSuora) {
-                pisteet = suuriSuora20;
+                pisteet[0] = 11;
+                pisteet[1] = suuriSuora20;
                 break;
             } else if (yhdistelma.equals("tayskasi") && taysKasi) {
-                pisteet = taysKasiLuku;
+                pisteet[0] = 12;
+                pisteet[1] = taysKasiLuku;
                 break;
             } else if (yhdistelma.equals("sattuma") && sattuma) {
-                pisteet = sattumaLuku;
+                pisteet[0] = 13;
+                pisteet[1] = sattumaLuku;
                 break;
             } else if (yhdistelma.equals("yatzy") && yatzy) {
-                pisteet = yatzy50;
+                pisteet[0] = 14;
+                pisteet[1] = yatzy50;
                 break;
             } else if (yhdistelma.equals("nay")) {
-                pisteet = 0;
+                pisteet[1] = 0;
                 break;
             } else if (yhdistelma.equals("lopeta")) {
-                pisteet = -1;
+                pisteet[1] = -1;
                 break;
             } else {
                 System.out.print("Virhe");
             }
         }
+
         return pisteet;
     }
+
 }

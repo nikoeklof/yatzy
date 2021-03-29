@@ -3,11 +3,13 @@ import java.util.Scanner;
 
 public class Valikko {
 
-    private Scanner lukija;
-    private Pelaajat pelaajat = new Pelaajat("Yatzy");
+    public Scanner lukija;
+    public Pelaajat pelaajat = new Pelaajat();
+    private Peli peli;
 
     public Valikko() {
         this.lukija = new Scanner(System.in);
+        this.peli = new Peli();
     }
 
     // kommentoidut komennot ovat luultavasti pelin sisällä
@@ -25,6 +27,20 @@ public class Valikko {
         System.out.println("Lopeta - lopettaa pelin");
         System.out.println("");
         this.komentojenKaynnistys();
+    }
+
+    public void uusiPeli() {
+        System.out.println("Aloitetaanko uusi peli?");
+        System.out.println("Kyllä - palaa valikkoon, HUOM pelaajat säilyvät, ei tarvetta lisää uudestaan");
+        System.out.println("Ei - lopettaa ohjelman");
+        String vastaus = lukija.nextLine();
+        if (vastaus.equalsIgnoreCase("kyllä")) {
+            this.pelaajat.pelaajat.clear();
+            komennot();
+        } else if (vastaus.equalsIgnoreCase("ei")) {
+            System.out.println("Suljetaan peli...");
+            System.exit(0);
+        }
     }
 
     public void komentojenKaynnistys() {
@@ -53,7 +69,15 @@ public class Valikko {
             }
             if (komento.equalsIgnoreCase("Aloita")) {
                 // aloittaa pelin, siirtyy peli luokkaan
-                break;
+                if (pelaajat.pelaajat.isEmpty()) {
+                    System.out.println("");
+                    System.out.println("Ei pelaajia!!!");
+                    System.out.println("");
+                } else {
+                    peli.kaynnistaPeli(pelaajat, lukija);
+                    uusiPeli();
+                }
+
             }
             if (komento.equalsIgnoreCase("Listaa")) {
                 pelaajat.tulostaPelaajat();
@@ -75,6 +99,7 @@ public class Valikko {
     }
 
     public void saannot() {
+        System.out.println("_______________________________________________________");
         System.out.println("Säännöt");
         System.out.println("");
         System.out.println("Pelaajia voi olla rajattomasti, tai voit pelata yksin.");
@@ -116,6 +141,8 @@ public class Valikko {
         System.out.println("Pelaajan peli on ohi kun kaikki kohdat pöytäkirjasta on täytetty.");
         System.out.println("Loppupisteet on kaikkien pisteiden summa. Eniten pisteitä kerännyt voittaa.");
         System.out.println("");
+        System.out.println("_______________________________________________________");
+
     }
 
 }
