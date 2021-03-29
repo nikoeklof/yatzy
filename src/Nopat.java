@@ -5,11 +5,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Nopat {
-
+    int[] palautaNopat;
     int[] x;
+    private Pelaaja pelaaja;
 
     public Nopat() {
+        this.pelaaja = pelaaja;
+    }
 
+    public int[] palautaNopat() {
+        int[] nopat = new int[5];
+        nopat = this.palautaNopat;
+        return nopat;
     }
 
     public int[] palautaTulos() {
@@ -258,7 +265,13 @@ public class Nopat {
             } else if (vastaus.equals("check")) {
 
                 while (true) {
-
+                    this.palautaNopat = new int[5];
+                    palautaNopat[0] = noppa01;
+                    palautaNopat[1] = noppa02;
+                    palautaNopat[2] = noppa03;
+                    palautaNopat[3] = noppa04;
+                    palautaNopat[4] = noppa05;
+                    palautaNopat();
                     x = noppienTulos(noppa01, noppa02, noppa03, noppa04, noppa05, lukija);
 
                     if (x[1] == 0 && vuorot == 0) {
@@ -277,6 +290,7 @@ public class Nopat {
                         break;
                     } else if (x[1] > 0) {
                         pisteetValittu = true;
+
                     } else if (x[1] == -1) {
                         x[1] = 0;
                         pisteetValittu = true;
@@ -303,7 +317,7 @@ public class Nopat {
 
     }
 
-    public static int[] noppienTulos(int noppa01, int noppa02, int noppa03, int noppa04, int noppa05, Scanner lukija) {
+    public int[] noppienTulos(int noppa01, int noppa02, int noppa03, int noppa04, int noppa05, Scanner lukija) {
 
         // Spagetti koodia
 
@@ -367,6 +381,7 @@ public class Nopat {
         // if (noppa == 1) {
         // i++;
         // }
+        // System.out.println("ykkoset: " + i);
         // }
         if (noppia.contains(1)) {
             ykkoset = true;
@@ -640,65 +655,95 @@ public class Nopat {
             if (yhdistelma.equals("ykkoset") && ykkoset) {
                 pisteet[0] = 0;
                 pisteet[1] = i;
+
                 break;
+
             } else if (yhdistelma.equals("kakkoset") && kakkoset) {
                 pisteet[0] = 1;
                 pisteet[1] = ii;
+
                 break;
+
             } else if (yhdistelma.equals("kolmoset") && kolmoset) {
                 pisteet[0] = 2;
                 pisteet[1] = iii;
+
                 break;
+
             } else if (yhdistelma.equals("neloset") && neloset) {
                 pisteet[0] = 3;
                 pisteet[1] = iv;
+
                 break;
+
             } else if (yhdistelma.equals("viitoset") && viitoset) {
                 pisteet[0] = 4;
                 pisteet[1] = v;
+
                 break;
+
             } else if (yhdistelma.equals("kuutoset") && kuutoset) {
                 pisteet[0] = 5;
                 pisteet[1] = vi;
+
                 break;
+
             } else if (yhdistelma.equals("yksipari") && yksiPari) {
                 pisteet[0] = 6;
                 pisteet[1] = ipari;
+
                 break;
+
             } else if (yhdistelma.equals("kaksiparia") && kaksiParia) {
                 pisteet[0] = 7;
                 pisteet[1] = iipari;
+
                 break;
+
             } else if (yhdistelma.equals("kolmoisluku") && kolmoisluku) {
                 pisteet[0] = 8;
                 pisteet[1] = trio;
+
                 break;
+
             } else if (yhdistelma.equals("neloisluku") && neloisluku) {
                 pisteet[0] = 9;
                 pisteet[1] = quad;
+
                 break;
+
             } else if (yhdistelma.equals("pienisuora") && pieniSuora) {
                 pisteet[0] = 10;
                 pisteet[1] = pieniSuora15;
+
                 break;
+
             } else if (yhdistelma.equals("suurisuora") && suuriSuora) {
                 pisteet[0] = 11;
                 pisteet[1] = suuriSuora20;
+
                 break;
+
             } else if (yhdistelma.equals("tayskasi") && taysKasi) {
                 pisteet[0] = 12;
                 pisteet[1] = taysKasiLuku;
+
                 break;
+
             } else if (yhdistelma.equals("sattuma") && sattuma) {
                 pisteet[0] = 13;
                 pisteet[1] = sattumaLuku;
+
                 break;
+
             } else if (yhdistelma.equals("yatzy") && yatzy) {
                 pisteet[0] = 14;
                 pisteet[1] = yatzy50;
+
                 break;
+
             } else if (yhdistelma.equals("nay")) {
-                pisteet[1] = 0;
+                pisteet[1] = -1;
                 break;
             } else if (yhdistelma.equals("lopeta")) {
                 pisteet[1] = -1;

@@ -60,9 +60,7 @@ public class Pelaajat {
     public void lisaaPelaaja(String nimi) {
         Pelaaja pelaaja = new Pelaaja(nimi);
         this.pelaajat.add(pelaaja);
-        System.out.println("");
-        System.out.println("Pelaaja lisätty");
-        System.out.println("");
+        
     }
 
     public void tulostaPisteet() {

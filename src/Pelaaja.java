@@ -23,6 +23,14 @@ public class Pelaaja {
         }
     }
 
+    public boolean onkoTaytetty(int indeksi) {
+        if (this.poytakirja.maara[indeksi] == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public void heitaNoppa() {
         this.nopat.heitaNoppa();
     }

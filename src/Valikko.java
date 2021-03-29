@@ -38,8 +38,14 @@ public class Valikko {
             this.pelaajat.pelaajat.clear();
             komennot();
         } else if (vastaus.equalsIgnoreCase("ei")) {
+            System.out.println("");
             System.out.println("Suljetaan peli...");
             System.exit(0);
+        } else {
+            System.out.println("");
+            System.out.println("Virheellinen komento....");
+            System.out.println("");
+            uusiPeli();
         }
     }
 
@@ -60,6 +66,9 @@ public class Valikko {
                 System.out.println("Pelaajan nimi?");
                 String nimi = lukija.nextLine();
                 pelaajat.lisaaPelaaja(nimi);
+                System.out.println("");
+                System.out.println("Pelaaja lisätty");
+                System.out.println("");
 
             }
             if (komento.equalsIgnoreCase("Poista")) {
