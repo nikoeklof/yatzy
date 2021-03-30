@@ -7,10 +7,8 @@ import java.util.Collections;
 public class Nopat {
     int[] palautaNopat;
     int[] x;
-    private Pelaaja pelaaja;
 
     public Nopat() {
-        this.pelaaja = pelaaja;
     }
 
     public int[] palautaNopat() {
@@ -35,7 +33,7 @@ public class Nopat {
         this.x = new int[2];
         int vuorot = 2;
 
-        System.out.println("Heitetään 5 noppaa...");
+        System.out.println("\nHeitetään 5 noppaa...");
 
         int noppa01 = 1 + random.nextInt(6);
         int noppa02 = 1 + random.nextInt(6);
@@ -45,12 +43,12 @@ public class Nopat {
 
         while (true) {
 
-            System.out.println("1: " + noppa01);
+            System.out.println("\n1: " + noppa01);
             System.out.println("2: " + noppa02);
             System.out.println("3: " + noppa03);
             System.out.println("4: " + noppa04);
             System.out.println("5: " + noppa05);
-            System.out.println("Vuoroja: " + vuorot);
+            System.out.println("Uudelleen-heitto vuoroja: " + vuorot);
 
             System.out.println("heita = heittää uuestaan valitut nopat");
             System.out.println("check = tarkistaa avoimet noppa yhistelmät");
@@ -58,180 +56,82 @@ public class Nopat {
 
             if (vastaus.equals("heita") && vuorot == 0) {
 
-                System.out.println("Sinulla ei ole enään vuoroja...");
+                System.out.println(
+                        "\n1 = heittää uuestaan pelaajan valitsemat nopat\n3 = tarkistaa avoimet noppa yhistelmät\n");
 
             } else if (vastaus.equals("heita") && vuorot > 0) {
 
-                int heittoja = 0;
                 int uusi01 = 0;
-                int uusi02 = 0;
-                int uusi03 = 0;
-                int uusi04 = 0;
+                int heitto01 = 0;
+                int heitto02 = 0;
+                int heitto03 = 0;
+                int heitto04 = 0;
 
                 vuorot--;
 
-                System.out.println("Kuinka monta noppaa haluat heittää?");
+                System.out.println(
+                        "\nMitkä nopat haluat heittää?\n\nValitse 1-5 välillä!\n7 = lopettaa vuoron\n9 = heittää kaiken\n");
                 while (true) {
-                    heittoja = Integer.valueOf(lukija.nextLine());
+                    uusi01 = Integer.valueOf(lukija.nextLine());
 
-                    if (heittoja > 5 || heittoja < 1) {
-                        System.out.print("Virheellinen luku...");
+                    if (uusi01 == 9) {
+                        break;
+                    } else if (uusi01 < 6 && uusi01 > 0) {
+                        heitto01 = uusi01;
+                        break;
                     } else {
+                        System.out.print("Virheellinen luku...   ");
+                    }
+                }
+
+                while (!(uusi01 == 9)) {
+                    uusi01 = Integer.valueOf(lukija.nextLine());
+
+                    if (uusi01 < 6 && uusi01 > 0 && uusi01 != heitto01) {
+                        heitto02 = uusi01;
                         break;
+                    } else if (uusi01 == 7 || uusi01 == 9) {
+                        break;
+                    } else {
+                        System.out.print("Virheellinen luku tai olet jo valinnut tämän nopan...   ");
                     }
                 }
 
-                if (heittoja != 5) {
+                while (!(uusi01 == 7 || uusi01 == 9)) {
+                    uusi01 = Integer.valueOf(lukija.nextLine());
 
-                    System.out.println("Mitkä nopat heitetään uusiksi?");
-                    System.out.println("Huom! valitse nopat yksitellen");
-
-                    while (true) {
-                        uusi01 = Integer.valueOf(lukija.nextLine());
-
-                        if (uusi01 < 1 || uusi01 > 5) {
-                            System.out.print("Numero on liias suuri tai pieni...   ");
-                        } else {
-                            break;
-                        }
-
-                    }
-
-                    if (heittoja >= 2) {
-                        while (true) {
-                            uusi02 = Integer.valueOf(lukija.nextLine());
-                            if (uusi02 == uusi01 || uusi02 < 1 || uusi02 > 5) {
-                                System.out.print("Sama kuin aikasempi tai numero on liias suuri tai pieni...   ");
-                            } else {
-                                break;
-                            }
-                        }
-                    }
-                    if (heittoja >= 3) {
-                        while (true) {
-                            uusi03 = Integer.valueOf(lukija.nextLine());
-                            if (uusi03 == uusi01 || uusi03 == uusi02 || uusi03 < 1 || uusi03 > 5) {
-                                System.out.print("Sama kuin aikasempi tai numero on liias suuri tai pieni...   ");
-                            } else {
-                                break;
-                            }
-                        }
-                    }
-                    if (heittoja == 4) {
-                        while (true) {
-                            uusi04 = Integer.valueOf(lukija.nextLine());
-                            if (uusi04 == uusi01 || uusi04 == uusi02 || uusi04 == uusi03 || uusi04 < 1 || uusi04 > 5) {
-                                System.out.print("Sama kuin aikasempi tai numero on liias suuri tai pieni...   ");
-                            } else {
-                                break;
-                            }
-                        }
+                    if (uusi01 < 6 && uusi01 > 0 && uusi01 != heitto01 && uusi01 != heitto02) {
+                        heitto03 = uusi01;
+                        break;
+                    } else if (uusi01 == 7 || uusi01 == 9) {
+                        break;
+                    } else {
+                        System.out.print("Virheellinen luku tai olet jo valinnut tämän nopan...   ");
                     }
                 }
-                if (heittoja == 5) {
+
+                while (!(uusi01 == 7 || uusi01 == 9)) {
+                    uusi01 = Integer.valueOf(lukija.nextLine());
+
+                    if (uusi01 < 6 && uusi01 > 0 && uusi01 != heitto01 && uusi01 != heitto02 && uusi01 != heitto03) {
+                        heitto04 = uusi01;
+                        break;
+                    } else if (uusi01 == 7 || uusi01 == 9) {
+                        break;
+
+                    } else {
+                        System.out.print("Virheellinen luku tai olet jo valinnut tämän nopan...   ");
+                    }
+                }
+                if (uusi01 == 9) {
                     noppa01 = 1 + random.nextInt(6);
                     noppa02 = 1 + random.nextInt(6);
                     noppa03 = 1 + random.nextInt(6);
                     noppa04 = 1 + random.nextInt(6);
                     noppa05 = 1 + random.nextInt(6);
-                }
+                } else {
 
-                switch (uusi01) {
-
-                case 1:
-
-                    noppa01 = 1 + random.nextInt(6);
-                    break;
-
-                case 2:
-
-                    noppa02 = 1 + random.nextInt(6);
-                    break;
-
-                case 3:
-
-                    noppa03 = 1 + random.nextInt(6);
-                    break;
-
-                case 4:
-
-                    noppa04 = 1 + random.nextInt(6);
-                    break;
-
-                case 5:
-
-                    noppa05 = 1 + random.nextInt(6);
-                    break;
-
-                }
-
-                if (heittoja >= 2) {
-
-                    switch (uusi02) {
-
-                    case 1:
-
-                        noppa01 = 1 + random.nextInt(6);
-                        break;
-
-                    case 2:
-
-                        noppa02 = 1 + random.nextInt(6);
-                        break;
-
-                    case 3:
-
-                        noppa03 = 1 + random.nextInt(6);
-                        break;
-
-                    case 4:
-
-                        noppa04 = 1 + random.nextInt(6);
-                        break;
-
-                    case 5:
-
-                        noppa05 = 1 + random.nextInt(6);
-                        break;
-
-                    }
-                }
-
-                if (heittoja >= 3) {
-
-                    switch (uusi03) {
-
-                    case 1:
-
-                        noppa01 = 1 + random.nextInt(6);
-                        break;
-
-                    case 2:
-
-                        noppa02 = 1 + random.nextInt(6);
-                        break;
-
-                    case 3:
-
-                        noppa03 = 1 + random.nextInt(6);
-                        break;
-
-                    case 4:
-
-                        noppa04 = 1 + random.nextInt(6);
-                        break;
-
-                    case 5:
-
-                        noppa05 = 1 + random.nextInt(6);
-                        break;
-
-                    }
-                }
-
-                if (heittoja >= 4) {
-
-                    switch (uusi04) {
+                    switch (heitto01) {
 
                     case 1:
 
@@ -260,6 +160,92 @@ public class Nopat {
 
                     }
 
+                    switch (heitto02) {
+
+                    case 1:
+
+                        noppa01 = 1 + random.nextInt(6);
+                        break;
+
+                    case 2:
+
+                        noppa02 = 1 + random.nextInt(6);
+                        break;
+
+                    case 3:
+
+                        noppa03 = 1 + random.nextInt(6);
+                        break;
+
+                    case 4:
+
+                        noppa04 = 1 + random.nextInt(6);
+                        break;
+
+                    case 5:
+
+                        noppa05 = 1 + random.nextInt(6);
+                        break;
+
+                    }
+
+                    switch (heitto03) {
+
+                    case 1:
+
+                        noppa01 = 1 + random.nextInt(6);
+                        break;
+
+                    case 2:
+
+                        noppa02 = 1 + random.nextInt(6);
+                        break;
+
+                    case 3:
+
+                        noppa03 = 1 + random.nextInt(6);
+                        break;
+
+                    case 4:
+
+                        noppa04 = 1 + random.nextInt(6);
+                        break;
+
+                    case 5:
+
+                        noppa05 = 1 + random.nextInt(6);
+                        break;
+
+                    }
+
+                    switch (heitto04) {
+
+                    case 1:
+
+                        noppa01 = 1 + random.nextInt(6);
+                        break;
+
+                    case 2:
+
+                        noppa02 = 1 + random.nextInt(6);
+                        break;
+
+                    case 3:
+
+                        noppa03 = 1 + random.nextInt(6);
+                        break;
+
+                    case 4:
+
+                        noppa04 = 1 + random.nextInt(6);
+                        break;
+
+                    case 5:
+
+                        noppa05 = 1 + random.nextInt(6);
+                        break;
+
+                    }
                 }
 
             } else if (vastaus.equals("check")) {
@@ -554,17 +540,16 @@ public class Nopat {
         // Kaksiparia
 
         if (noppa05 == noppa04 && noppa03 == noppa02 && noppa05 != noppa03
-                || noppa04 == noppa03 && noppa02 == noppa01) {
+                || noppa04 == noppa03 && noppa02 == noppa01 && noppa04 != noppa02
+                || noppa05 == noppa04 && noppa02 == noppa01 && noppa05 != noppa02) {
             kaksiParia = true;
 
-            if (noppa05 == noppa04) {
-                ipari = noppa05 + noppa04;
-            } else if (noppa04 == noppa03) {
-                ipari = noppa04 + noppa03;
-            } else if (noppa03 == noppa02) {
-                ipari = noppa03 + noppa02;
-            } else if (noppa02 == noppa01) {
-                ipari = noppa02 + noppa01;
+            if (noppa05 == noppa04 && noppa03 == noppa02) {
+                iipari = noppa05 + noppa04 + noppa03 + noppa02;
+            } else if (noppa04 == noppa03 && noppa02 == noppa01) {
+                iipari = noppa04 + noppa03 + noppa02 + noppa01;
+            } else if (noppa05 == noppa04 && noppa02 == noppa01) {
+                iipari = noppa05 + noppa04 + noppa02 + noppa01;
             }
 
             System.out.println("kaksiparia: " + iipari);
@@ -580,7 +565,7 @@ public class Nopat {
                 trio = noppa05 + noppa04 + noppa03;
             } else if (noppa04 == noppa03 && noppa04 == noppa02) {
                 trio = noppa04 + noppa03 + noppa02;
-            } else if (noppa03 == noppa02 && noppa05 == noppa01) {
+            } else if (noppa03 == noppa02 && noppa03 == noppa01) {
                 trio = noppa03 + noppa02 + noppa01;
             }
 

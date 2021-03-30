@@ -31,10 +31,10 @@ public class Valikko {
 
     public void uusiPeli() {
         System.out.println("Aloitetaanko uusi peli?");
-        System.out.println("Kyllä - palaa valikkoon, HUOM pelaajat säilyvät, ei tarvetta lisää uudestaan");
+        System.out.println("Kylla - palaa valikkoon, HUOM pelaajat säilyvät, ei tarvetta lisää uudestaan");
         System.out.println("Ei - lopettaa ohjelman");
         String vastaus = lukija.nextLine();
-        if (vastaus.equalsIgnoreCase("kyllä")) {
+        if (vastaus.equalsIgnoreCase("kylla")) {
             this.pelaajat.pelaajat.clear();
             komennot();
         } else if (vastaus.equalsIgnoreCase("ei")) {
@@ -56,7 +56,8 @@ public class Valikko {
             String komento = lukija.nextLine();
 
             if (komento.equalsIgnoreCase("Lopeta")) {
-                break;
+                System.out.println("Suljetaan peli...");
+                System.exit(0);
             }
             if (komento.equalsIgnoreCase("Saannot")) {
                 this.saannot();

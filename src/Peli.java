@@ -48,7 +48,7 @@ public class Peli {
                                 System.out.println("Lisätään pisteet kohtaan: "
                                         + pelaavat.pelaajat.get(i).getPoytakirja()
                                                 .getYhdistelma(pelaavat.pelaajat.get(i).getNopat().palautaTulos()[0])
-                                        + ": " + pelaavat.pelaajat.get(i).getNopat().palautaTulos()[1]);
+                                        + " = " + pelaavat.pelaajat.get(i).getNopat().palautaTulos()[1]);
                                 pelaavat.pelaajat.get(i).lisaaPisteita();
                             } else {
                                 System.out.println("-----------");
@@ -98,7 +98,7 @@ public class Peli {
                             System.out.println("Lisätään pisteet kohtaan: "
                                     + pelaavat.pelaajat.get(i).getPoytakirja()
                                             .getYhdistelma(pelaavat.pelaajat.get(i).getNopat().palautaTulos()[0])
-                                    + ": " + pelaavat.pelaajat.get(i).getNopat().palautaTulos()[1]);
+                                    + " = " + pelaavat.pelaajat.get(i).getNopat().palautaTulos()[1]);
                             pelaavat.pelaajat.get(i).lisaaPisteita();
                         } else {
                             System.out.println("-----------");
@@ -168,7 +168,7 @@ public class Peli {
                                                             + pelaavat.pelaajat.get(i).getPoytakirja()
                                                                     .getYhdistelma(pelaavat.pelaajat.get(i).getNopat()
                                                                             .palautaTulos()[0])
-                                                            + ": "
+                                                            + " = "
                                                             + pelaavat.pelaajat.get(i).getNopat().palautaTulos()[1]);
                                     pelaavat.pelaajat.get(i).lisaaPisteita();
                                 } else {
@@ -219,7 +219,7 @@ public class Peli {
                                 System.out.println("Lisätään pisteet kohtaan: "
                                         + pelaavat.pelaajat.get(i).getPoytakirja()
                                                 .getYhdistelma(pelaavat.pelaajat.get(i).getNopat().palautaTulos()[0])
-                                        + ": " + pelaavat.pelaajat.get(i).getNopat().palautaTulos()[1]);
+                                        + " = " + pelaavat.pelaajat.get(i).getNopat().palautaTulos()[1]);
                                 pelaavat.pelaajat.get(i).lisaaPisteita();
                             } else {
                                 System.out.println("-----------");
