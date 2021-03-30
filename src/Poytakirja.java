@@ -6,7 +6,7 @@ public class Poytakirja {
     int[] pisteet = new int[2]; // tässä jonossa on valisumma (indeksi 0), ja loppusumma (indeksi 1).
 
     public void tulostaKortti() {
-
+        laskePisteet();
         String summa = "";
         for (int i = 0; i < 14; i++) {
             if (maara[i] == 0) {

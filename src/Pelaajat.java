@@ -2,21 +2,21 @@ import java.util.ArrayList;
 
 public class Pelaajat {
 
-    public ArrayList<Pelaaja> pelaajat;
+    public ArrayList<Pelaaja> pelaaja;
 
     public Pelaajat() {
-        this.pelaajat = new ArrayList<Pelaaja>();
+        this.pelaaja = new ArrayList<Pelaaja>();
     }
 
     public void poistaPelaaja(String nimi) {
-        if (pelaajat.isEmpty()) {
+        if (pelaaja.isEmpty()) {
             System.out.println("");
             System.out.println("Ei pelaajia!");
             System.out.println("");
         } else {
-            for (int i = 0; i < pelaajat.size(); i++)
-                if (pelaajat.get(i).getNimi().equals(nimi)) {
-                    pelaajat.remove(i);
+            for (int i = 0; i < pelaaja.size(); i++)
+                if (pelaaja.get(i).getNimi().equals(nimi)) {
+                    pelaaja.remove(i);
                 }
             System.out.println("");
             System.out.println("Pelaaja poistettu!");
@@ -25,42 +25,32 @@ public class Pelaajat {
 
     }
 
-    public void tulostaPelaaja(String nimi) {
-        for (Pelaaja pelaaja : pelaajat) {
-            if (nimi.equalsIgnoreCase(pelaaja.getNimi())) {
-                pelaaja.getPoytakirja().laskePisteet();
-                System.out.println("--------------------------------------------");
-                System.out.println("Pelaajan " + pelaaja.getNimi() + " kortti:");
-                System.out.println("--------------------------------------------");
-                pelaaja.getPoytakirja().tulostaKortti();
-
-            }
-        }
-    }
-
     public void tulostaPelaajat() {
-        if (pelaajat.isEmpty()) {
+        if (pelaaja.isEmpty()) {
             System.out.println("");
             System.out.println("Ei pelaajia!");
             System.out.println("");
         } else {
             System.out.println("------Pelaajat------");
-            for (Pelaaja pelaaja : pelaajat) {
-                System.out.println(pelaaja.getNimi());
+            for (Pelaaja pelaaja1 : pelaaja) {
+                System.out.println(pelaaja1.getNimi());
             }
+            System.out.println("--------------------");
+            System.out.println("");
         }
     }
 
-    public void lisaaTulos(int pelaaja, int indeksi, int tulos) {
+    public void lisaaTulos(int pelaaja1, int indeksi, int tulos) {
 
-        pelaajat.get(pelaaja).getPoytakirja().lisaaPisteita(indeksi, tulos);
+        pelaaja.get(pelaaja1).lisaaPisteita(indeksi, tulos);
 
     }
 
     public void lisaaPelaaja(String nimi) {
         Pelaaja pelaaja = new Pelaaja(nimi);
-        this.pelaajat.add(pelaaja);
-        
+        this.pelaaja.add(pelaaja);
+        System.out.println("\nPelaaja " + nimi + " lisätty.\n");
+
     }
 
     public void tulostaPisteet() {
@@ -69,9 +59,9 @@ public class Pelaajat {
         System.out.println("Pistetilanne");
         System.out.println("_____________");
         System.out.println("");
-        for (Pelaaja pelaaja : pelaajat) {
-            pelaaja.getPoytakirja().laskePisteet();
-            System.out.println(pelaaja.getNimi() + ": " + pelaaja.getPoytakirja().pisteet[1] + " pistettä.");
+        for (Pelaaja pelaaja1 : pelaaja) {
+            pelaaja1.getPoytakirja().laskePisteet();
+            System.out.println(pelaaja1.getNimi() + ": " + pelaaja1.getPoytakirja().pisteet[1] + " pistettä.");
         }
         System.out.println("_____________");
         System.out.println("");
@@ -79,12 +69,12 @@ public class Pelaajat {
 
     public String tulostaVoittaja() {
         int indeksi = 0;
-        Pelaaja voittaja = pelaajat.get(indeksi);
-        for (int i = 0; i < pelaajat.size(); i++) {
-            pelaajat.get(indeksi).getPoytakirja().laskePisteet();
-            pelaajat.get(i).getPoytakirja().laskePisteet();
-            if (pelaajat.get(i).getPoytakirja().pisteet[1] > voittaja.getPoytakirja().pisteet[1]) {
-                voittaja = pelaajat.get(i);
+        Pelaaja voittaja = pelaaja.get(indeksi);
+        for (int i = 0; i < pelaaja.size(); i++) {
+            pelaaja.get(indeksi).getPoytakirja().laskePisteet();
+            pelaaja.get(i).getPoytakirja().laskePisteet();
+            if (pelaaja.get(i).getPoytakirja().pisteet[1] > voittaja.getPoytakirja().pisteet[1]) {
+                voittaja = pelaaja.get(i);
             }
 
         }

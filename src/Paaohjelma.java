@@ -1,9 +1,11 @@
 public class Paaohjelma {
     public static void main(String[] args) {
 
-        Valikko kayttis = new Valikko();
-        kayttis.komennot();
-        kayttis.komentojenKaynnistys();
-        kayttis.uusiPeli();
+        Pelaajat pelaajat = new Pelaajat();
+        pelaajat.lisaaPelaaja("Niko");
+        pelaajat.pelaaja.get(0).tulostaKortti();
+        pelaajat.lisaaTulos(0, 3, 16);
+        pelaajat.pelaaja.get(0).tulostaKortti();
+
     }
 }
