@@ -70,7 +70,7 @@ public class Nopat {
                 vuorot--;
 
                 System.out.println(
-                        "\nMitkä nopat haluat heittää?\n\nValitse 1-5 välillä!\n7 = lopettaa vuoron\n9 = heittää kaiken\n");
+                        "\nMitkä nopat haluat heittää? \n\nValitse 1-5 välillä!\nHUOM! valitse yksi kerrallaan.\n7 = lopettaa vuoron\n9 = heittää kaiken\n");
                 while (true) {
                     uusi01 = Integer.valueOf(lukija.nextLine());
 
