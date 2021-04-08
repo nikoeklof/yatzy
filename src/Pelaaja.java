@@ -22,7 +22,7 @@ public class Pelaaja {
     }
 
     public boolean onkoTaytetty(int indeksi) {
-        if (this.poytakirja.maara[indeksi] == 0) {
+        if (this.poytakirja.maara[indeksi] == -1) {
             return false;
         } else {
             return true;

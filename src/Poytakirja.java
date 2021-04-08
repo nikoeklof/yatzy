@@ -2,14 +2,14 @@ public class Poytakirja {
 
     String[] yhdistelmat = { "Ykköset", "Kakkoset", "Kolmoset", "Neloset", "Vitoset", "Kutoset", "Pari", "Kaksi paria",
             "Kolmoisluku", "Neloisluku", "Pieni suora", "Suuri suora", "Täyskäsi (Mökki)", "Sattuma", "Yatzy" };
-    int[] maara = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    int[] maara = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
     int[] pisteet = new int[2]; // tässä jonossa on valisumma (indeksi 0), ja loppusumma (indeksi 1).
 
     public void tulostaKortti() {
         laskePisteet();
         String summa = "";
         for (int i = 0; i < 14; i++) {
-            if (maara[i] == 0) {
+            if (maara[i] == -1) {
                 summa = "Tyhjä";
             } else {
                 summa = Integer.toString(maara[i]);
