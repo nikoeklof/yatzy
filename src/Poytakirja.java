@@ -9,6 +9,9 @@ public class Poytakirja {
         laskePisteet();
         String summa = "";
         for (int i = 0; i < 14; i++) {
+            if (maara[i] == -2) {
+                summa = "Käytetty";
+            }
             if (maara[i] == -1) {
                 summa = "Tyhjä";
             } else {
@@ -30,7 +33,7 @@ public class Poytakirja {
     }
 
     public void lisaaPisteita(int indeksi, int pisteMaara) {
-        maara[indeksi] += pisteMaara;
+        maara[indeksi] = pisteMaara;
     }
 
     public int[] getMaara() {
@@ -48,16 +51,19 @@ public class Poytakirja {
         int valiSumma = 0;
 
         for (int i = 0; i < 14; i++) {
-            summa += maara[i];
+            if (maara[i] > 0) {
+                summa += maara[i];
+            }
             if (i == 5 && summa >= 63) {
                 valiSumma = summa + 50;
 
-            } else if (i == 5) {
-                valiSumma = summa;
             }
-
-            pisteet[0] = valiSumma;
+            if (i == 5) {
+                valiSumma = summa;
+                pisteet[0] = valiSumma;
+            }
             pisteet[1] = summa;
+
         }
         return pisteet;
     }

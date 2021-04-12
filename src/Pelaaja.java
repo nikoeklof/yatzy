@@ -1,3 +1,5 @@
+import javax.swing.text.TabExpander;
+
 public class Pelaaja {
     private String nimi;
     private Poytakirja poytakirja;
@@ -19,6 +21,21 @@ public class Pelaaja {
         System.out.println("--------------------------");
 
         this.poytakirja.tulostaKortti();
+    }
+
+    public boolean onkoPoytakirjaTaynna() {
+        boolean taytetty;
+        for (int i = 0; i < 15; i++) {
+            if (poytakirja.maara[i] == -1) {
+                taytetty = false;
+                System.out.println("ei täynnä");
+                return taytetty;
+            }
+        }
+        taytetty = true;
+        System.out.println("täynnä");
+        return taytetty;
+
     }
 
     public boolean onkoTaytetty(int indeksi) {

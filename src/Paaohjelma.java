@@ -1,11 +1,15 @@
+import java.util.Scanner;
+
 public class Paaohjelma {
     public static void main(String[] args) {
-
-        Pelaajat pelaajat = new Pelaajat();
-        pelaajat.lisaaPelaaja("Niko");
-        pelaajat.pelaaja.get(0).tulostaKortti();
-        pelaajat.lisaaTulos(0, 3, 16);
-        pelaajat.pelaaja.get(0).tulostaKortti();
+        Scanner lukija = new Scanner(System.in);
+        Pelaajat pelaavat = new Pelaajat();
+        Nopat nopat = new Nopat();
+        pelaavat.lisaaPelaaja("mauno");
+        for (int i = 0; i < 15; i++) {
+            pelaavat.pelaaja.get(0).lisaaPisteita(i, 2);
+        }
+        pelaavat.pelaaja.get(0).onkoPoytakirjaTaynna();
 
     }
 }
