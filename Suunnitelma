@@ -2,3 +2,5 @@ Luon luokat Pelaajat, Pelaaja ja Poytakirja mitkä toimii niin että
 
 jokainen pelaaja saa oman poytakirjan joka pitää
 lukua tuloksista, tätä kautta voi myös valita pelin voittajan
+
+Tarvitsee java JRE version 8 toimiakseen
