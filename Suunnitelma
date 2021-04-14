@@ -1,4 +1,2 @@
-Luon luokat Pelaajat, Pelaaja ja Poytakirja mitkä toimii niin että 
-
-jokainen pelaaja saa oman poytakirjan joka pitää
-lukua tuloksista, tätä kautta voi myös valita pelin voittajan
+Yatzy peli, mukana .EXE - tiedosto, joka tarvii toimiakseen javan JRE version 8- version
+suunnitelmat juurikansiossa
