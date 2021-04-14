@@ -55,18 +55,22 @@ public class Nopat {
     public void autoRun(Scanner lukija, Pelaaja x) { // Tekee kaiken automaattisesti ja lisää pisteet pelaajalle
         nollaa();
         heitaNoppa();
-        while (true) {
-            if (tulos[0] == -1) {
+        boolean uudelleen = true;
+        while (uudelleen) {
+            switch (tulos[0]) {
+            case -1:
                 if (vastaaja(lukija)) {
                     uudelleenHeitto(lukija);
                 } else {
                     noppienTulos(lukija, x);
                 }
-            } else if (tulos[0] == -2) {
+                break;
+            case -2:
                 tuloksetonTulos(lukija, x);
+            default:
+                System.out.println("");
                 lisaaPelaajalle(x);
-            } else {
-                lisaaPelaajalle(x);
+                uudelleen = false;
                 break;
             }
         }
@@ -242,22 +246,22 @@ public class Nopat {
         int taysKasiLuku = 0;
         int sattumaLuku = 0;
 
-        boolean onkoykkoset = false;
-        boolean onkokakkoset = false;
-        boolean onkokolmoset = false;
-        boolean onkoneloset = false;
-        boolean onkoviitoset = false;
-        boolean onkokuutoset = false;
+        boolean ykkoset = false;
+        boolean kakkoset = false;
+        boolean kolmoset = false;
+        boolean neloset = false;
+        boolean viitoset = false;
+        boolean kuutoset = false;
 
-        boolean onkoyksiPari = false;
-        boolean onkokaksiParia = false;
-        boolean onkokolmoisluku = false;
-        boolean onkoneloisluku = false;
-        boolean onkopieniSuora = false;
-        boolean onkosuuriSuora = false;
-        boolean onkotaysKasi = false;
-        boolean onkosattuma = false;
-        boolean onkoyatzy = false;
+        boolean yksiPari = false;
+        boolean kaksiParia = false;
+        boolean kolmoisluku = false;
+        boolean neloisluku = false;
+        boolean pieniSuora = false;
+        boolean suuriSuora = false;
+        boolean taysKasi = false;
+        boolean sattuma = false;
+        boolean yatzy = false;
 
         System.out.println("\nPöytäkirjan yhdistelmät:");
 
@@ -265,13 +269,14 @@ public class Nopat {
         // Ykköset
         if (tarkista(x, 0)) {
             if (sisaltaa(jarjestaja, 1)) {
-                onkoykkoset = true;
+                ykkoset = true;
 
                 for (Integer noppa : nopat) {
                     if (noppa == 1) {
                         i++;
                     }
                 }
+                
                 System.out.println("\nYkkoset: " + i);
             }
         }
@@ -279,7 +284,7 @@ public class Nopat {
         // Kakkoset
         if (tarkista(x, 1)) {
             if (sisaltaa(jarjestaja, 2)) {
-                onkokakkoset = true;
+                kakkoset = true;
 
                 for (Integer noppa : nopat) {
                     if (noppa == 2) {
@@ -294,7 +299,7 @@ public class Nopat {
         // Kolmoset
         if (tarkista(x, 2)) {
             if (sisaltaa(jarjestaja, 3)) {
-                onkokolmoset = true;
+                kolmoset = true;
 
                 for (Integer noppa : nopat) {
                     if (noppa == 3) {
@@ -309,7 +314,7 @@ public class Nopat {
         // Neloset
         if (tarkista(x, 3)) {
             if (sisaltaa(jarjestaja, 4)) {
-                onkoneloset = true;
+                neloset = true;
 
                 for (Integer noppa : nopat) {
                     if (noppa == 4) {
@@ -324,7 +329,7 @@ public class Nopat {
         // Viitoset
         if (tarkista(x, 4)) {
             if (sisaltaa(jarjestaja, 5)) {
-                onkoviitoset = true;
+                viitoset = true;
 
                 for (Integer noppa : nopat) {
                     if (noppa == 5) {
@@ -339,7 +344,7 @@ public class Nopat {
         // Kuutoset
         if (tarkista(x, 5)) {
             if (sisaltaa(jarjestaja, 6)) {
-                onkokuutoset = true;
+                kuutoset = true;
 
                 for (Integer noppa : nopat) {
                     if (noppa == 6) {
@@ -357,7 +362,7 @@ public class Nopat {
         // Yksipari
         if (tarkista(x, 6)) {
             if (noppa05 == noppa04 || noppa04 == noppa03 || noppa03 == noppa02 || noppa02 == noppa01) {
-                onkoyksiPari = true;
+                yksiPari = true;
 
                 if (noppa05 == noppa04) {
                     ipari = noppa05 + noppa04;
@@ -378,7 +383,7 @@ public class Nopat {
             if (noppa05 == noppa04 && noppa03 == noppa02 && noppa05 != noppa03
                     || noppa04 == noppa03 && noppa02 == noppa01 && noppa04 != noppa02
                     || noppa05 == noppa04 && noppa02 == noppa01 && noppa05 != noppa02) {
-                onkokaksiParia = true;
+                kaksiParia = true;
 
                 if (noppa05 == noppa04 && noppa03 == noppa02) {
                     iipari = noppa05 + noppa04 + noppa03 + noppa02;
@@ -396,7 +401,7 @@ public class Nopat {
         if (tarkista(x, 8)) {
             if (noppa05 == noppa04 && noppa05 == noppa03 || noppa04 == noppa03 && noppa04 == noppa02
                     || noppa03 == noppa02 && noppa03 == noppa01) {
-                onkokolmoisluku = true;
+                kolmoisluku = true;
 
                 if (noppa05 == noppa04 && noppa05 == noppa03) {
                     trio = noppa05 + noppa04 + noppa03;
@@ -414,7 +419,7 @@ public class Nopat {
         if (tarkista(x, 9)) {
             if (noppa05 == noppa04 && noppa05 == noppa03 && noppa05 == noppa02
                     || noppa04 == noppa03 && noppa04 == noppa02 && noppa04 == noppa01) {
-                onkoneloisluku = true;
+                neloisluku = true;
 
                 if (noppa05 == noppa04 && noppa05 == noppa03 && noppa05 == noppa02) {
                     quad = noppa05 + noppa04 + noppa03 + noppa02;
@@ -429,7 +434,7 @@ public class Nopat {
         // Pieni Suora
         if (tarkista(x, 10)) {
             if (noppa05 == 5 && noppa04 == 4 && noppa03 == 3 && noppa02 == 2 && noppa01 == 1) {
-                onkopieniSuora = true;
+                pieniSuora = true;
 
                 System.out.println("\nPienisuora: 15");
             }
@@ -438,7 +443,7 @@ public class Nopat {
         // Suuri Suora
         if (tarkista(x, 11)) {
             if (noppa05 == 6 && noppa04 == 5 && noppa03 == 4 && noppa02 == 3 && noppa01 == 2) {
-                onkosuuriSuora = true;
+                suuriSuora = true;
 
                 System.out.println("\nSuurisuora: 20");
             }
@@ -448,7 +453,7 @@ public class Nopat {
         if (tarkista(x, 12)) {
             if (noppa05 == noppa04 && noppa03 == noppa02 && noppa03 == noppa01 && noppa05 != noppa03
                     || noppa05 == noppa04 && noppa05 == noppa03 && noppa02 == noppa01 && noppa05 != noppa02) {
-                onkotaysKasi = true;
+                taysKasi = true;
 
                 taysKasiLuku = noppa01 + noppa02 + noppa03 + noppa04 + noppa05;
 
@@ -458,7 +463,7 @@ public class Nopat {
 
         // Sattuma
         if (tarkista(x, 13)) {
-            onkosattuma = true;
+            sattuma = true;
 
             sattumaLuku = noppa05 + noppa04 + noppa03 + noppa02 + noppa01;
 
@@ -468,7 +473,7 @@ public class Nopat {
         // Yatzy
         if (tarkista(x, 14)) {
             if (noppa05 == noppa04 && noppa05 == noppa03 && noppa05 == noppa02 && noppa05 == noppa01) {
-                onkoyatzy = true;
+                yatzy = true;
 
                 System.out.println("\nYatzy: 50");
             }
@@ -481,86 +486,70 @@ public class Nopat {
         while (true) {
             String yhdistelma = lukija.nextLine();
 
-            if (yhdistelma.equalsIgnoreCase("ykkoset") && onkoykkoset) {
+            if (yhdistelma.equalsIgnoreCase("ykkoset") && ykkoset) {
                 tulos[0] = 0;
                 tulos[1] = i;
-                break;
-            } else if (yhdistelma.equalsIgnoreCase("kakkoset") && onkokakkoset) {
+            } else if (yhdistelma.equalsIgnoreCase("kakkoset") && kakkoset) {
                 tulos[0] = 1;
                 tulos[1] = ii;
-                break;
-            } else if (yhdistelma.equalsIgnoreCase("kolmoset") && onkokolmoset) {
+            } else if (yhdistelma.equalsIgnoreCase("kolmoset") && kolmoset) {
                 tulos[0] = 2;
                 tulos[1] = iii;
-                break;
-            } else if (yhdistelma.equalsIgnoreCase("neloset") && onkoneloset) {
+            } else if (yhdistelma.equalsIgnoreCase("neloset") && neloset) {
                 tulos[0] = 3;
                 tulos[1] = iv;
-                break;
-            } else if (yhdistelma.equalsIgnoreCase("viitoset") && onkoviitoset) {
+            } else if (yhdistelma.equalsIgnoreCase("viitoset") && viitoset) {
                 tulos[0] = 4;
                 tulos[1] = v;
-                break;
-            } else if (yhdistelma.equalsIgnoreCase("kuutoset") && onkokuutoset) {
+            } else if (yhdistelma.equalsIgnoreCase("kuutoset") && kuutoset) {
                 tulos[0] = 5;
                 tulos[1] = vi;
-                break;
-            } else if (yhdistelma.equalsIgnoreCase("yksipari") && onkoyksiPari) {
+            } else if (yhdistelma.equalsIgnoreCase("yksipari") && yksiPari) {
                 tulos[0] = 6;
                 tulos[1] = ipari;
-                break;
-            } else if (yhdistelma.equalsIgnoreCase("kaksiparia") && onkokaksiParia) {
+            } else if (yhdistelma.equalsIgnoreCase("kaksiparia") && kaksiParia) {
                 tulos[0] = 7;
                 tulos[1] = iipari;
-                break;
-            } else if (yhdistelma.equalsIgnoreCase("kolmoisluku") && onkokolmoisluku) {
+            } else if (yhdistelma.equalsIgnoreCase("kolmoisluku") && kolmoisluku) {
                 tulos[0] = 8;
                 tulos[1] = trio;
-                break;
-            } else if (yhdistelma.equalsIgnoreCase("neloisluku") && onkoneloisluku) {
+            } else if (yhdistelma.equalsIgnoreCase("neloisluku") && neloisluku) {
                 tulos[0] = 9;
                 tulos[1] = quad;
-                break;
-            } else if (yhdistelma.equalsIgnoreCase("pienisuora") && onkopieniSuora) {
+            } else if (yhdistelma.equalsIgnoreCase("pienisuora") && pieniSuora) {
                 tulos[0] = 10; // Pienisuora aina antaa 15 pistettä
                 tulos[1] = 15;
-                break;
-            } else if (yhdistelma.equalsIgnoreCase("suurisuora") && onkosuuriSuora) {
+            } else if (yhdistelma.equalsIgnoreCase("suurisuora") && suuriSuora) {
                 tulos[0] = 11; // Suurisuora aina antaa 20 pistettä
                 tulos[1] = 20;
-                break;
-            } else if (yhdistelma.equalsIgnoreCase("tayskasi") && onkotaysKasi) {
+            } else if (yhdistelma.equalsIgnoreCase("tayskasi") && taysKasi) {
                 tulos[0] = 12; // Kaikki nopat laskettuna yhteen
                 tulos[1] = taysKasiLuku;
-                break;
-            } else if (yhdistelma.equalsIgnoreCase("sattuma") && onkosattuma) {
+            } else if (yhdistelma.equalsIgnoreCase("sattuma") && sattuma) {
                 tulos[0] = 13; // Kaikki nopat laskettuna yhteen
                 tulos[1] = sattumaLuku;
-                break;
-            } else if (yhdistelma.equalsIgnoreCase("yatzy") && onkoyatzy) {
+            } else if (yhdistelma.equalsIgnoreCase("yatzy") && yatzy) {
                 tulos[0] = 14; // Yatzy aina antaa 50 pistettä
                 tulos[1] = 50;
-                break;
             } else if (yhdistelma.equals("1") && vuorot == 0) {
                 System.out.print("Sinulla ei ole enään vuoroja...   ");
+                continue;
             } else if (yhdistelma.equals("1")) {
                 tulos[0] = -1;
-                break;
             } else if (yhdistelma.equals("3")) {
                 System.out.println("\nEi asetettu pisteitä");
                 tulos[0] = -2;
-                break;
             } else {
                 System.out.print("Virheellinen komento...   ");
+                continue;
             }
+            break;
         }
     }
 
     public void tuloksetonTulos(Scanner lukija, Pelaaja x) {
 
         tulos[1] = 0;
-        System.out.println(tulos[0]);
-        System.out.println(tulos[1]);
 
         boolean ykkoset = false;
         boolean kakkoset = false;
@@ -698,52 +687,39 @@ public class Nopat {
             String yhdistelma = lukija.nextLine();
             if (yhdistelma.equalsIgnoreCase("ykkoset") && ykkoset) {
                 tulos[0] = 0;
-                break;
             } else if (yhdistelma.equalsIgnoreCase("kakkoset") && kakkoset) {
                 tulos[0] = 1;
-                break;
             } else if (yhdistelma.equalsIgnoreCase("kolmoset") && kolmoset) {
                 tulos[0] = 2;
-                break;
             } else if (yhdistelma.equalsIgnoreCase("neloset") && neloset) {
                 tulos[0] = 3;
-                break;
             } else if (yhdistelma.equalsIgnoreCase("viitoset") && viitoset) {
                 tulos[0] = 4;
-                break;
             } else if (yhdistelma.equalsIgnoreCase("kuutoset") && kuutoset) {
                 tulos[0] = 5;
-                break;
             } else if (yhdistelma.equalsIgnoreCase("yksipari") && yksiPari) {
                 tulos[0] = 6;
-                break;
             } else if (yhdistelma.equalsIgnoreCase("kaksiparia") && kaksiParia) {
                 tulos[0] = 7;
-                break;
             } else if (yhdistelma.equalsIgnoreCase("kolmoisluku") && kolmoisluku) {
                 tulos[0] = 8;
-                break;
             } else if (yhdistelma.equalsIgnoreCase("neloisluku") && neloisluku) {
                 tulos[0] = 9;
-                break;
             } else if (yhdistelma.equalsIgnoreCase("pienisuora") && pieniSuora) {
                 tulos[0] = 10;
-                break;
             } else if (yhdistelma.equalsIgnoreCase("suurisuora") && suuriSuora) {
                 tulos[0] = 11;
-                break;
             } else if (yhdistelma.equalsIgnoreCase("tayskasi") && taysKasi) {
                 tulos[0] = 12;
-                break;
             } else if (yhdistelma.equalsIgnoreCase("sattuma") && sattuma) {
                 tulos[0] = 13;
-                break;
             } else if (yhdistelma.equalsIgnoreCase("yatzy") && yatzy) {
                 tulos[0] = 14;
-                break;
             } else {
                 System.out.print("Virheellinen komento...   ");
+                continue;
             }
+            break;
         }
     }
 }

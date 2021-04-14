@@ -18,55 +18,50 @@ public class Valikko {
             System.out.println("1 - Yatzyn säännöt");
             System.out.println("2 - lisää pelaaja");
             System.out.println("3 - poista pelaaja");
-            System.out.println("4 - aloita peli");
-            System.out.println("");
-            System.out.println("1, 2, 3 vai 4?");
-            int komento = Integer.valueOf(lukija.nextLine());
-            System.out.println("");
-            if(komento == 1) {
+            System.out.println("4 - aloita peli\n");
+            System.out.println("1, 2, 3 vai 4?\n");
+            String komento = lukija.nextLine();
+            if(komento.equals("1")) {
                 this.tulostaSaannot();
             }
-            if(komento == 2) {
-                System.out.println("Syötä pelaajan nimi.");
+            if(komento.equals("2")) {
+                System.out.println("\nSyötä pelaajan nimi.\n");
                 String nimi = lukija.nextLine();
                 if(nimi.isEmpty()) {
-                    System.out.println("Ei nimeä!");
+                    System.out.println("\nEi nimeä!\n");
+                    this.aloitus();
                 }
                 pelaajat.lisaaPelaaja(nimi);
             }
-            if(komento == 3) {
-                System.out.println("Syötä poistettavan pelaajan nimi.");
+            if(komento.equals("3")) {
+                System.out.println("\nSyötä poistettavan pelaajan nimi.\n");
                 String nimi = lukija.nextLine();
                 if(nimi.isEmpty()) {
-                    System.out.println("Ei nimeä!");
+                    System.out.println("\nEi nimeä!\n");
+                    this.aloitus();
                 }
                 pelaajat.poistaPelaaja(nimi);
             }
-            if(komento == 4) {
-                peli.pelinKulku(pelaajat);
-                //pelaaja lista on tyhjä, miksi?
-                //Anna lista argumenttina pelinKulku - metodille, muuta metodia myös niin, että se vaatii argumentiksi juuri Pelaajat-listan. 
-                //syntaxi tässä olisi tälläinen: peli.pelinKulku(pelaajat);
-                //ja metodin pitäisi Peli-luokassa olla: pelinKulku(Pelaajat pelaajat).  \\Niko
-                break;
+            if(komento.equals("4")) {
+                if(this.pelaajat.pelaaja.isEmpty()) {
+                    this.pelaajat.tulostaPelaajat();
+                    this.aloitus();
+                } else {
+                    peli.pelinKulku(this.pelaajat.pelaaja);
+                    break;
+                }
             }
-            if(komento < 1 || komento > 4) {
-                System.out.println("Virheellinen numero!");
+            if(!(komento.equals("1")) && !(komento.equals("2")) && 
+                !(komento.equals("3")) && !(komento.equals("4"))) {
+                System.out.println("\nVirheellinen numero!\n");
+                this.aloitus();
             }
         }
     }
 
     public void tulostaSaannot() {
-        System.out.println("-------Säännöt-------");
-        System.out.println("Pelaajia voi olla rajattomasti, tai voit pelata yksin.");
-        System.out.println("Vuoron alussa heitetään kaikki nopat. Vuoron aikana pelaaja saa heittää noppia kolme kertaa.");
-        System.out.println("Jokaisella heitolla saa heittää niin monta noppaa uudestaan kuin haluaa.");
-        System.out.println("Yhtään noppaa ei ole pakko heittää. Kolmea kertaa ei ole pakko heittää.");
-        System.out.println("Kun pelaaja lopettaa heittämisen, saavutettu tulos kirjataan pöytäkirjaan.");
-        System.out.println("Pelaaja saa valita kohdan johon tulos kirjataan.");
-        System.out.println("Mikäli heitetty tulos ei sovi mihinkään kohtaan, pisteiksi tulee nolla.");
-        System.out.println("Pöytäkirjan täyttöjärjestys on vapaa.");
-        System.out.println("Pöytäkirja jakautuu kahteen osaan: ylä- ja alaosaan.");
+        System.out.println("\n-------Säännöt-------\n");
+        System.out.println("Pelaajia voi olla rajattomasti, tai voit pelata yksin.\nVuoron alussa heitetään kaikki nopat. Vuoron aikana pelaaja saa heittää noppia kolme kertaa.\nJokaisella heitolla saa heittää niin monta noppaa uudestaan kuin haluaa.\nYhtään noppaa ei ole pakko heittää. Kolmea kertaa ei ole pakko heittää.\nKun pelaaja lopettaa heittämisen, saavutettu tulos kirjataan pöytäkirjaan.\nPelaaja saa valita kohdan johon tulos kirjataan.\nMikäli heitetty tulos ei sovi mihinkään kohtaan, pisteiksi tulee nolla pelaajan valitsemaan kohtaan.\nPöytäkirjan täyttöjärjestys on vapaa.\nPöytäkirja jakautuu kahteen osaan: ylä- ja alaosaan.");
         System.out.println("------");
         System.out.println("Yläosalla on kohdat:");
         System.out.println("- Ykköset: tavoite on saada 1-5 kpl 1-silmälukuja");
@@ -79,8 +74,8 @@ public class Valikko {
         System.out.println("- Bonus: jos välisumma on yli 63 pistettä, saa pelaaja bonus 50 pistettä");
         System.out.println("");
         System.out.println("Alaosassa on kohdat:");
-        System.out.println("- Yksi pari: kaksi kertaa sama silmäluku");
-        System.out.println("- Kaksi paria: kaksi eri paria");
+        System.out.println("- Yksipari: kaksi kertaa sama silmäluku");
+        System.out.println("- Kaksipari: kaksi eri paria");
         System.out.println("- Kolmoisluku: kolme samaa silmälukua");
         System.out.println("- Neloisluku: neljä samaa silmalukua");
         System.out.println("- Pieni suora: numerot 1,2,3,4,5");
@@ -89,9 +84,8 @@ public class Valikko {
         System.out.println("- Sattuma: mitä tahansa");
         System.out.println("- Yatzy: viisi samaa lukua");
         System.out.println("------");
-        System.out.println("Peli on ohi kun kaikkien pelaajien pöytäkirjat ovat täytetty.");
-        System.out.println("Loppupisteet on kaikkien pisteiden summa. Eniten pisteitä kerännyt voittaa.");
-        System.out.println("--------------------");
+        System.out.println("Peli on ohi kun kaikkien pelaajien pöytäkirjat ovat täytetty.\nLoppupisteet on kaikkien pisteiden summa. Eniten pisteitä kerännyt voittaa.");
+        System.out.println("--------------------\n");
     }
 
 }
